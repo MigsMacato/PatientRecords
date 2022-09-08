@@ -3,7 +3,7 @@ import LoginForm from "./components/LoginForm";
 function App() {
   const adminUser = {
     email: "admin@user.com",
-    password: "admin123"
+    password: "admin1234"
   }
   const [user, setUser] = useState({name: "", email: ""});
   const [error, setError] = useState("");
