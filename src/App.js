@@ -1,41 +1,17 @@
-import { useState } from "react";
-import LoginForm from "./components/LoginForm";
+import registration from "./components/registration";
+import {Home} from "./components/Home";
+import {Adduser} from "./components/Adduser";
+import {EditUser} from "./components/EditUser";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 function App() {
-  const adminUser = {
-    email: "admin@user.com",
-    password: "admin1234"
-  }
-  const [user, setUser] = useState({name: "", email: ""});
-  const [error, setError] = useState("");
   
-  const Login = details =>{
-    console.log(details);
-
-    if(details.email == adminUser.email && details.password == adminUser.password){
-      console.log("Logged in");
-      setUser({
-        name: details.name,
-        email: details.email
-      })
-  } else{
-    console.log("Details do not match!");
-    setError("Details do not Match!");
-  }
-  }
- 
-  const Logout = () =>{
-    setUser({name: "", email: "" })
-  }
-
   return (
     <div className="App">
-    {(user.email !== "")? (
-      <div className="Welcome">
-        <h2>Welcome, <span>{user.name}</span></h2> 
-        <button onClick = {Logout}>Logout</button>
-        
-    </div>) :
-      <LoginForm Login={Login} error={error}/>}
+      <Router>
+            <Route exact path="/Home" component={Home} />
+            <Route path="/add" component={Adduser} />
+            <Route path="/edit/:id" component={EditUser} />
+        </Router>
     </div>
   );
 }
